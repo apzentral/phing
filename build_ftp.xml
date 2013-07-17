@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="" default="all" basedir="." description="">
+
+	<!-- Ftp Hosting Info -->
+	<property name="ftp.host" value=""/>
+	<property name="ftp.port" value="21"/>
+	<property name="ftp.username" value=""/>
+	<property name="ftp.password" value=""/>
+	<property name="ftp.dir" value="/"/>
+	<property name="ftp.mode" value="binary"/>
+
+	<!-- File Set -->
+	<fileset id="all" dir=".">
+		<include name="**"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+	<target name="all">
+		<echo>Starting to upload to the Project (FTP).</echo>
+		<ftpdeploy host="${ftp.host}"
+			port="${ftp.port}"
+			username="${ftp.username}"
+			password="${ftp.password}"
+			dir="${ftp.dir}"
+			mode="${ftp.mode}">
+			<fileset refid="all"/>
+		</ftpdeploy>
+		<echo>FTP Upload Finished!</echo>
+	</target>
+
+</project>
