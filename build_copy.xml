@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="" default="all" basedir="." description="">
+
+	<!-- Destination Address -->
+	<property name="destination_root" value=""/>
+
+	<!-- File Set -->
+	<fileset id="all" dir=".">
+		<include name="**"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+	<target name="all">
+		<echo>Start copying to ${destination_root}.</echo>
+		<copy todir="${destination_root}">
+			<fileset refid="all" />
+		</copy>
+		<echo>Copy is Finished!</echo>
+	</target>
+
+</project>
