@@ -8,3 +8,4 @@ PHP Phing Build Script Templates.
 2. build_copy.xml - Copy script.
 3. build_scp.xml - SCP script.
 4. build_zip.xml - ZIP script.
+5. build_joomla.xml - Joomla Build script.

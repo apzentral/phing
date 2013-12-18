@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="" default="" basedir="." description="">
+
+
+	<!-- Ftp Hosting Info -->
+	<property name="ftp.host" value=""/>
+	<property name="ftp.username" value=""/>
+	<property name="ftp.password" value=""/>
+	<property name="ftp.dir" value=""/>
+	<property name="ftp.port" value="21"/>
+	<property name="ftp.mode" value="binary"/>
+
+
+	<!-- SCP Hosting Info -->
+	<property name="scp.host" value=""/>
+	<property name="scp.username" value=""/>
+	<property name="scp.password" value=""/>
+	<property name="scp.dir" value=""/>
+
+
+
+	<!-- Component Info -->
+	<property name="app.dir.root" value="/www"/>
+	<property name="app.component.name" value=""/>
+
+
+	<!-- Site Path Config -->
+	<property name="app.dir.site.components" value="${app.dir.root}/components/${app.component.name}/"/>
+	<property name="app.dir.libraries" value="${app.dir.root}/libraries/${app.component.name}"/>
+
+	<!-- Admin Path Config -->
+	<property name="app.dir.admin" value="${app.dir.root}/administrator"/>
+	<property name="app.dir.admin.components" value="${app.dir.root}/administrator/components/${app.component.name}/"/>
+	<property name="app.dir.admin.lang" value="${app.dir.admin}/language/"/>
+
+
+
+
+
+	<!-- File Set -->
+
+	<fileset id="site" dir="./site">
+		<include name="**"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+
+	<fileset id="admin" dir="./admin">
+		<include name="**"/>
+
+		<exclude name="language/**"/>
+		<exclude name="libraries/**"/>
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+
+
+	<fileset id="lang" dir="./admin/language">
+		<include name="**"/>
+		<include name="en-GB/**"/>
+		<include name="en-GB/*.ini"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+
+
+	<fileset id="libraries" dir="./admin/libraries">
+		<include name="**"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+
+	<fileset id="composer" dir="./vendor">
+		<include name="**"/>
+
+		<exclude name=".komodotools/**"/>
+		<exclude name="**.tmp"/>
+		<exclude name="phing"/>
+		<exclude name="build.xml"/>
+		<exclude name=".travis.yml"/>
+		<exclude name="**.komodoproject"/>
+		<exclude name="**.json"/>
+		<exclude name="**.lock"/>
+		<exclude name="**.sass-cache"/>
+		<exclude name=".sass-cache/**"/>
+		<exclude name="**.dist"/>
+		<exclude name="**.markdown"/>
+		<exclude name="LICENSE"/>
+	</fileset>
+
+
+	<!-- Target -->
+
+
+	<target name="Upload Component to Site" description="Upload to Component Site.">
+		<echo>Starting to upload to the Project (FTP).</echo>
+
+		<ftpdeploy host="${ftp.host}"
+			port="${ftp.port}"
+			username="${ftp.username}"
+			password="${ftp.password}"
+			dir="${app.dir.site.components}"
+			mode="${ftp.mode}">
+			<fileset refid="site"/>
+		</ftpdeploy>
+
+		<echo>FTP Upload Finished!</echo>
+
+	</target>
+
+
+
+	<target name="Upload Component to Admin" description="Upload to Component Admin.">
+		<echo>Starting to upload to the Project (FTP).</echo>
+
+		<ftpdeploy host="${ftp.host}"
+			port="${ftp.port}"
+			username="${ftp.username}"
+			password="${ftp.password}"
+			dir="${app.dir.admin.components}"
+			mode="${ftp.mode}">
+			<fileset refid="admin"/>
+		</ftpdeploy>
+
+		<echo>FTP Upload Finished!</echo>
+
+	</target>
+
+
+</project>
