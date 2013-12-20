@@ -2,6 +2,18 @@
 <project name="" default="" basedir="." description="">
 
 
+	<!-- Extensions -->
+	<property name="extension" value="" />
+	<property name="version" value="" />
+
+
+
+	<!-- Build Variables -->
+	<property name="release.dir" value="releases" />
+
+
+
+
 	<!-- Ftp Hosting Info -->
 	<property name="ftp.host" value=""/>
 	<property name="ftp.username" value=""/>
@@ -176,6 +188,55 @@
 		<echo>FTP Upload Finished!</echo>
 
 	</target>
+
+
+
+
+	<!-- Release Target -->
+	<target name="Packaging for Release" description="Perform zip operation and create zip file for release.">
+		<echo>Start to packaging for release.</echo>
+
+		<mkdir  dir="${release.dir}" />
+		<delete dir="${release.dir}/${extension}" />
+		<mkdir  dir="${release.dir}/${extension}" />
+
+		<echo>Start copying extension.</echo>
+
+		<copy todir="${release.dir}/${extension}">
+			<fileset dir=".">
+				<include name="**"/>
+
+				<exclude name="${release.dir}"/>
+				<exclude name=".komodotools/**"/>
+				<exclude name="**.tmp"/>
+				<exclude name="phing"/>
+				<exclude name="build.xml"/>
+				<exclude name=".travis.yml"/>
+				<exclude name="**.komodoproject"/>
+				<exclude name="**.json"/>
+				<exclude name="**.lock"/>
+				<exclude name="**.sass-cache"/>
+				<exclude name=".sass-cache/**"/>
+				<exclude name="**.dist"/>
+				<exclude name="**.markdown"/>
+				<exclude name=".git"/>
+				<exclude name="LICENSE"/>
+			</fileset>
+		</copy>
+
+		<echo>Compressing extension.</echo>
+
+		<zip destfile="${release.dir}/${extension}_${version}.zip">
+			<fileset dir="${release.dir}/${extension}" >
+				<include name="**"/>
+			</fileset>
+		</zip>
+
+		<echo>End packaging!</echo>
+
+	</target>
+
+
 
 
 </project>
