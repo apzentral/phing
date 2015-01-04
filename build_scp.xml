@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <project name="" default="all" basedir="." description="">
 
-	<!-- SCP Hosting Info -->
-	<property name="scp.host" value=""/>
-	<property name="scp.username" value=""/>
-	<property name="scp.password" value=""/>
-	<property name="scp.dir" value=""/>
+  <!-- SCP Hosting Info -->
+  <property name="scp.host" value="" />
+  <property name="scp.username" value="" />
+  <property name="scp.password" value="" />
+  <property name="scp.dir" value="" />
 
-	<!-- File Set -->
-	<fileset id="all" dir=".">
-		<include name="**"/>
+  <!-- File Set -->
+  <fileset id="all" dir=".">
+    <include name="**" />
 
-		<exclude name=".komodotools/**"/>
-		<exclude name="**.tmp"/>
-		<exclude name="phing"/>
-		<exclude name="build.xml"/>
-		<exclude name=".travis.yml"/>
-		<exclude name="**.komodoproject"/>
-		<exclude name="**.json"/>
-		<exclude name="**.lock"/>
-		<exclude name="**.sass-cache"/>
-		<exclude name=".sass-cache/**"/>
-		<exclude name="**.dist"/>
-		<exclude name="**.markdown"/>
-		<exclude name="LICENSE"/>
-	</fileset>
+    <exclude name=".komodotools/**" />
+    <exclude name="**.tmp" />
+    <exclude name="phing" />
+    <exclude name="build.xml" />
+    <exclude name=".travis.yml" />
+    <exclude name="**.komodoproject" />
+    <exclude name="**.json" />
+    <exclude name="**.lock" />
+    <exclude name="**.sass-cache" />
+    <exclude name=".sass-cache/**" />
+    <exclude name="**.dist" />
+    <exclude name="**.markdown" />
+    <exclude name="LICENSE" />
+    <exclude name="**.sublime-project" />
+    <exclude name="**.sublime-workspace" />
+  </fileset>
 
-	<target name="all">
-		<echo>Start SCP to ${scp.host}.</echo>
-		<scp host="${scp.host}"
-			username="${scp.username}"
-			password="${scp.password}"
-			todir="${scp.dir}">
-			<fileset refid="all" />
-		</scp>
-		<echo>SCP is Finished!</echo>
-	</target>
+  <!-- #Build Target -->
+  <target name="all" description="">
+    <echo>Start SCP to ${scp.host}.</echo>
+    <scp host="${scp.host}" username="${scp.username}" password="${scp.password}" todir="${scp.dir}">
+      <fileset refid="all" />
+    </scp>
+    <echo>SCP is Finished!</echo>
+  </target>
 
 </project>

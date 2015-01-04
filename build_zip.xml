@@ -1,40 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <project name="" default="all" basedir="." description="">
 
-	<!-- Source Folder Path -->
-	<property name="source_root" value=""/>
+  <!-- Source Folder Path -->
+  <property name="source_root" value="" />
 
-	<!-- Destination Path -->
-	<property name="destination_root" value=""/>
+  <!-- Destination Path -->
+  <property name="destination_root" value="" />
 
-	<!-- Destination Zip File Name -->
-	<property name="zip_name" value=".zip"/>
+  <!-- Destination Zip File Name -->
+  <property name="zip_name" value=".zip" />
 
-	<!-- File Set -->
-	<fileset id="all" dir="${source_root}">
-		<include name="**"/>
+  <!-- File Set -->
+  <fileset id="all" dir="${source_root}">
+    <include name="**" />
 
-		<exclude name=".komodotools/**"/>
-		<exclude name="**.tmp"/>
-		<exclude name="phing"/>
-		<exclude name="build.xml"/>
-		<exclude name=".travis.yml"/>
-		<exclude name="**.komodoproject"/>
-		<exclude name="**.json"/>
-		<exclude name="**.lock"/>
-		<exclude name="**.sass-cache"/>
-		<exclude name=".sass-cache/**"/>
-		<exclude name="**.dist"/>
-		<exclude name="**.markdown"/>
-		<exclude name="LICENSE"/>
-	</fileset>
+    <exclude name=".komodotools/**" />
+    <exclude name="**.tmp" />
+    <exclude name="phing" />
+    <exclude name="build.xml" />
+    <exclude name=".travis.yml" />
+    <exclude name="**.komodoproject" />
+    <exclude name="**.json" />
+    <exclude name="**.lock" />
+    <exclude name="**.sass-cache" />
+    <exclude name=".sass-cache/**" />
+    <exclude name="**.dist" />
+    <exclude name="**.markdown" />
+    <exclude name="LICENSE" />
+    <exclude name="**.sublime-project" />
+    <exclude name="**.sublime-workspace" />
+  </fileset>
 
-	<target name="all">
-		<echo>Start zipping to ${destination_root}.</echo>
-		<zip destfile="${destination_root}/${zip_name}">
-			<fileset refid="all" />
-		</zip>
-		<echo>Zip is Finished! ( Filename: ${zip_name} )</echo>
-	</target>
+  <!-- #Build Target -->
+  <target name="all" description="">
+    <echo>Start zipping to ${destination_root}.</echo>
+    <zip destfile="${destination_root}/${zip_name}">
+      <fileset refid="all" />
+    </zip>
+    <echo>Zip is Finished! ( Filename: ${zip_name} )</echo>
+  </target>
 
 </project>
